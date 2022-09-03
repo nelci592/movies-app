@@ -12,6 +12,10 @@ class Movies with ChangeNotifier {
     return [..._movies];
   }
 
+  Movie findMovieById(String id) {
+    return _movies.firstWhere((movie) => movie.id == id);
+  }
+
   Future<void> fetchMovies() async {
     const url =
         'https://raw.githubusercontent.com/FEND16/movie-json-data/master/json/movies-coming-soon.json';
@@ -24,8 +28,10 @@ class Movies with ChangeNotifier {
             id: movie['id'],
             title: movie['title'],
             posterUrl: movie['posterurl'],
+            releaseDate: movie['releaseDate'],
             ratings: (movie['ratings']).cast<int>(),
-            genres: (movie['genres']).cast<String>()));
+            genres: (movie['genres']).cast<String>(),
+            actors: (movie['actors']).cast<String>()));
       });
       _movies = loadedMovies;
       notifyListeners();

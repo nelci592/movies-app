@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/movies.dart';
+import '../../widgets/app_drawer.dart';
 import '../../widgets/movies_grid.dart';
 
 class MoviesScreen extends StatefulWidget {
@@ -41,7 +42,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
       appBar: AppBar(
         title: const Text('Movies'),
       ),
-      // drawer: AppDrawer(),
+      drawer: const AppDrawer(),
       body: _isLoading
           ? const Center(
               child: CircularProgressIndicator(),

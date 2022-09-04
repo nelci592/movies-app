@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/movies.dart';
-import '../widgets/movies_grid.dart';
+import '../../providers/movies.dart';
+import '../../widgets/movies_grid.dart';
 
 class MoviesScreen extends StatefulWidget {
   const MoviesScreen({Key? key}) : super(key: key);

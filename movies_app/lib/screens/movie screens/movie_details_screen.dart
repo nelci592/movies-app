@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/movies.dart';
-import '../widgets/poster.dart';
-import '../widgets/actors_section.dart';
-import '../widgets/genre_section.dart';
-import '../widgets/release_date_section.dart';
+import '../../providers/movies.dart';
+import '../../widgets/poster.dart';
+import '../../widgets/actors_section.dart';
+import '../../widgets/genre_section.dart';
+import '../../widgets/release_date_section.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
   const MovieDetailsScreen({Key? key, required this.id}) : super(key: key);

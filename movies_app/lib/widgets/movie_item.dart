@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/movie.dart';
-import '../screens/movie_details_screen.dart';
+import '../screens/movie screens/movie_details_screen.dart';
 import 'poster.dart';
 
 class MovieItem extends StatelessWidget {

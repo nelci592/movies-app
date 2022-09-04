@@ -27,7 +27,6 @@ class _AuthCardState extends State<AuthCard> {
   final _passwordController = TextEditingController();
 
   void _showErrorDialog(String message) {
-    // print('the issue is --------' + message);
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(

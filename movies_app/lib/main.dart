@@ -4,6 +4,7 @@ import './providers/movies.dart';
 import './providers/auth.dart';
 import 'screens/auth screens/auth_screen.dart';
 import 'screens/movie screens/movies_screen.dart';
+import 'screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +29,16 @@ class MyApp extends StatelessWidget {
             title: 'Movies',
             theme:
                 ThemeData(primaryColor: const Color.fromRGBO(58, 66, 86, 1.0)),
-            home: auth.isAuth ? const MoviesScreen() : const AuthScreen(),
+            home: auth.isAuth
+                ? const MoviesScreen()
+                : FutureBuilder(
+                    future: auth.tryAutoLogin(),
+                    builder: (ctx, authResultSnapshot) =>
+                        authResultSnapshot.connectionState ==
+                                ConnectionState.waiting
+                            ? const SplashScreen()
+                            : const AuthScreen(),
+                  ),
           ),
         ));
   }

@@ -25,9 +25,9 @@ class GenreSection extends StatelessWidget {
             height: 36,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: movie.genres.length,
+              itemCount: movie.genres?.length,
               itemBuilder: (context, index) => DetailItem(
-                detail: movie.genres[index],
+                detail: movie.genres![index],
               ),
             ),
           )

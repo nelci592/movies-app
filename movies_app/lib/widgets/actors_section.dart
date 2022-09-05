@@ -27,9 +27,9 @@ class ActorsSection extends StatelessWidget {
             height: 160,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: movie.actors.length,
+              itemCount: movie.actors?.length,
               itemBuilder: (context, index) => ActorCard(
-                actor: movie.actors[index],
+                actor: movie.actors![index],
               ),
             ),
           )

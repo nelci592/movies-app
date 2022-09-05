@@ -12,8 +12,8 @@ class MovieItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final movie = Provider.of<Movie>(context, listen: false);
     int sumRatings =
-        movie.ratings.fold(0, (previous, current) => previous + current);
-    double avgRating = sumRatings / movie.ratings.length;
+        movie.ratings!.fold(0, (previous, current) => previous + current);
+    double avgRating = sumRatings / movie.ratings!.length;
 
     return SizedBox(
         height: 250,

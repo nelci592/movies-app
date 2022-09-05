@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
 import './movie.dart';
 
 class Movies with ChangeNotifier {
@@ -10,6 +8,12 @@ class Movies with ChangeNotifier {
 
   List<Movie> get movies {
     return [..._movies];
+  }
+
+  List<Movie> _watchLaterMovies = [];
+
+  List<Movie> get watchLaterMovies {
+    return [..._watchLaterMovies];
   }
 
   Movie findMovieById(String id) {
@@ -36,7 +40,68 @@ class Movies with ChangeNotifier {
       _movies = loadedMovies;
       notifyListeners();
     } catch (error) {
-      throw (error);
+      rethrow;
+    }
+  }
+
+  Future<void> addMovieToWatchList(
+    Movie movie,
+    String userId,
+    String authToken,
+  ) async {
+    final url =
+        'https://movies-app-ba8b6-default-rtdb.firebaseio.com/movies/$userId.json?auth=$authToken';
+    try {
+      await http.post(
+        Uri.parse(url),
+        body: json.encode({
+          'id': movie.id,
+          'title': movie.title,
+          'posterUrl': movie.posterUrl
+        }),
+      );
+      notifyListeners();
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  Future<void> removeMovieFromWatchList(
+    Movie movie,
+    String userId,
+    String authToken,
+  ) async {
+    final url =
+        'https://movies-app-ba8b6-default-rtdb.firebaseio.com/movies/$userId.json?auth=$authToken';
+    try {
+      await http.delete(Uri.parse(url));
+      notifyListeners();
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  Future<void> fetchWatchLaterMovies(
+    String userId,
+    String authToken,
+  ) async {
+    final url =
+        'https://movies-app-ba8b6-default-rtdb.firebaseio.com/movies/$userId.json?auth=$authToken';
+    try {
+      final response = await http.get(Uri.parse(url));
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+
+      final List<Movie> loadedMovies = [];
+      extractedData.forEach((prodId, prodData) {
+        loadedMovies.add(Movie(
+            id: prodData['id'],
+            title: prodData['title'],
+            posterUrl: prodData['posterUrl']));
+      });
+      _watchLaterMovies = loadedMovies;
+      notifyListeners();
+    } catch (error) {
+      rethrow;
     }
   }
 }

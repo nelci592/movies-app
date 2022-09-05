@@ -5,6 +5,7 @@ import './providers/auth.dart';
 import 'screens/auth screens/auth_screen.dart';
 import 'screens/movie screens/movies_screen.dart';
 import 'screens/splash_screen.dart';
+import 'screens/movie screens/watch_list_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,10 +19,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider.value(
-            value: Movies(),
+            value: Auth(),
           ),
           ChangeNotifierProvider.value(
-            value: Auth(),
+            value: Movies(),
           ),
         ],
         child: Consumer<Auth>(
@@ -39,6 +40,9 @@ class MyApp extends StatelessWidget {
                             ? const SplashScreen()
                             : const AuthScreen(),
                   ),
+            routes: {
+              WatchListScreen.routeName: (ctx) => const WatchListScreen(),
+            },
           ),
         ));
   }

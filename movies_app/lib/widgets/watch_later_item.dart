@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/auth.dart';
 import '../providers/movie.dart';
+import '../providers/movies.dart';
 import 'poster.dart';
 
 class WatchLaterItem extends StatelessWidget {
   final Movie movie;
+  //final Movies moviesData;
+
   const WatchLaterItem(this.movie, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final moviesData = Provider.of<Movies>(context);
+    final auth = Provider.of<Auth>(context);
+
     return Dismissible(
       key: ValueKey(movie.id),
       background: Container(
@@ -47,7 +55,8 @@ class WatchLaterItem extends StatelessWidget {
                 ));
       },
       onDismissed: (direction) {
-        // delete movie from watch list
+        moviesData.deleteMovieFromWatchLater(
+            movie.id, auth.userId as String, auth.token as String);
       },
       child: Card(
         margin: const EdgeInsets.symmetric(
@@ -57,18 +66,22 @@ class WatchLaterItem extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: ListTile(
-            leading: CircleAvatar(
-              child: Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: Poster(movie: movie)),
-            ),
-            title: Text(movie.title),
-            trailing: const Icon(
-              Icons.delete,
-              color: Colors.blue,
-              size: 40,
-            ),
-          ),
+              leading: CircleAvatar(
+                child: Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: Poster(movie: movie)),
+              ),
+              title: Text(movie.title),
+              trailing: IconButton(
+                icon: const Icon(
+                  Icons.delete,
+                  color: Colors.blue,
+                ),
+                onPressed: () {
+                  moviesData.deleteMovieFromWatchLater(
+                      movie.id, auth.userId as String, auth.token as String);
+                },
+              )),
         ),
       ),
     );

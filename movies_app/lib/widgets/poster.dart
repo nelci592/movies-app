@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../providers/movie.dart';
 
 class Poster extends StatelessWidget {

@@ -18,7 +18,7 @@ class MovieItem extends StatelessWidget {
         height: 250,
         width: 70,
         child: ListTile(
-            leading: Poster(movie: movie),
+            leading: SizedBox(width: 40, child: Poster(movie: movie)),
             title: Text(movie.title, maxLines: 2),
             subtitle: Text('Rating:' + avgRating.toStringAsFixed(2)),
             onTap: () => Navigator.push(

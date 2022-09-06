@@ -28,8 +28,8 @@ class WatchLaterSection extends StatelessWidget {
             action: SnackBarAction(
               label: 'Undo',
               onPressed: () {
-                //    moviesData.removeMovieFromWatchList(
-                //     movie, auth.userId as String, auth.token as String);
+                moviesData.deleteMovieFromWatchLater(
+                    movie.id, auth.userId as String, auth.token as String);
               },
             ),
           ));

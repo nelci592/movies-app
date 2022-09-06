@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/providers/movie.dart';
-import 'package:movies_app/widgets/watch_later_item.dart';
 import 'package:provider/provider.dart';
+import '../providers/movie.dart';
 import '../providers/movies.dart';
+import '../widgets/watch_later_item.dart';
 
 class WatchList extends StatelessWidget {
   const WatchList({Key? key}) : super(key: key);

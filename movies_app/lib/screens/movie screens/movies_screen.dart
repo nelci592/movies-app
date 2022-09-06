@@ -41,7 +41,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Movies'),
+        title: const Text('All Movies'),
       ),
       drawer: const AppDrawer(),
       body: _isLoading

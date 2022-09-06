@@ -10,6 +10,7 @@ class Auth with ChangeNotifier {
   DateTime? _expiryDate;
   String? _userId;
   Timer? _authTimer;
+  String? _userEmail;
 
   bool get isAuth {
     return token != '';
@@ -26,6 +27,10 @@ class Auth with ChangeNotifier {
 
   String? get userId {
     return _userId;
+  }
+
+  String? get userEmail {
+    return _userEmail;
   }
 
   Future<void> _authenticate(
@@ -49,6 +54,7 @@ class Auth with ChangeNotifier {
       }
       _token = responseData['idToken'];
       _userId = responseData['localId'];
+      _userEmail = responseData['email'];
       _expiryDate = DateTime.now().add(
         Duration(
           seconds: int.parse(
@@ -62,6 +68,7 @@ class Auth with ChangeNotifier {
       final userData = json.encode(
         {
           'token': _token,
+          'userEmail': _userEmail,
           'userId': _userId,
           'expiryDate': _expiryDate!.toIso8601String(),
         },
@@ -71,6 +78,10 @@ class Auth with ChangeNotifier {
       rethrow;
     }
   }
+// Future<void> resetPassword(String email) async {
+//   final url = 'https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyA8EZbvJEnHh0-82cuOlSJfL8qKVNJN-JI';
+
+//   }
 
   Future<void> signup(String email, String password) async {
     return _authenticate(email, password, 'signUp');
@@ -105,6 +116,7 @@ class Auth with ChangeNotifier {
   Future<void> logout() async {
     _token = null;
     _userId = null;
+    _userEmail = null;
     _expiryDate = null;
     if (_authTimer != null) {
       _authTimer!.cancel();

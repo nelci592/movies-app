@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/screens/user%20profile%20screens/user_profile_screen.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth.dart';
 import '../screens/movie screens/watch_list_screen.dart';
@@ -21,6 +22,15 @@ class AppDrawer extends StatelessWidget {
             title: const Text('All Movies'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed('/');
+            },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.supervised_user_circle),
+            title: const Text('User Profile'),
+            onTap: () {
+              Navigator.of(context)
+                  .pushReplacementNamed(UserProfilePage.routeName);
             },
           ),
           const Divider(),

@@ -11,6 +11,25 @@ class ReleaseDateSection extends StatelessWidget {
 
   final Movie movie;
 
+  setReleaseDate(String? releaseDate) {
+    if (releaseDate != null) {
+      return formatDate(releaseDate);
+    } else {
+      return 'Missing information';
+    }
+  }
+
+  formatDate(String date) {
+    try {
+      var newdate = Jiffy(date).yMMMMd;
+      return newdate;
+    } on FormatException {
+      return Jiffy(date, "yyyy-MM").yMMMMd;
+    } finally {
+      return Jiffy(date, "yyyy").yMMMMd;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,7 +42,7 @@ class ReleaseDateSection extends StatelessWidget {
             style: Theme.of(context).textTheme.headline6,
           ),
           const SizedBox(height: 10),
-          DetailItem(detail: Jiffy(movie.releaseDate).yMMMMd),
+          DetailItem(detail: setReleaseDate(movie.releaseDate)),
         ],
       ),
     );

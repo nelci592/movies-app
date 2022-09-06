@@ -10,7 +10,7 @@ class WatchList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final moviesData = Provider.of<Movies>(context);
-    var seen = Set<String>();
+    var seen = <String>{};
     List<Movie> movies = moviesData.watchLaterMovies
         .where((movie) => seen.add(movie.title))
         .toList();

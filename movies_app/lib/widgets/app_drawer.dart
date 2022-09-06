@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/screens/movie%20screens/watch_list_screen.dart';
 import 'package:provider/provider.dart';
-
 import '../providers/auth.dart';
+import '../screens/movie screens/watch_list_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);

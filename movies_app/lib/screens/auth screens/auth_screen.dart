@@ -47,7 +47,7 @@ class AuthScreen extends StatelessWidget {
                       child: const Text(
                         'Movies \n App',
                         style: TextStyle(
-                          fontSize: 45,
+                          fontSize: 30,
                         ),
                       ),
                     ),

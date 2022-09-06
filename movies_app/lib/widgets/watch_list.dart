@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/providers/movie.dart';
 import 'package:movies_app/widgets/watch_later_item.dart';
 import 'package:provider/provider.dart';
 import '../providers/movies.dart';
@@ -9,7 +10,10 @@ class WatchList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final moviesData = Provider.of<Movies>(context);
-    final movies = moviesData.watchLaterMovies;
+    var seen = Set<String>();
+    List<Movie> movies = moviesData.watchLaterMovies
+        .where((movie) => seen.add(movie.title))
+        .toList();
 
     return (movies.isEmpty)
         ? const Center(child: Text('You haven not added movies yet!'))

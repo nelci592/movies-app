@@ -20,6 +20,10 @@ class Movies with ChangeNotifier {
     return _movies.firstWhere((movie) => movie.id == id);
   }
 
+  bool isInWatchLater(Movie movie) {
+    return watchLaterMovies.contains(movie);
+  }
+
   Future<void> fetchMovies() async {
     const url =
         'https://raw.githubusercontent.com/FEND16/movie-json-data/master/json/movies-coming-soon.json';

@@ -26,6 +26,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
       setState(() {
         _isLoading = true;
       });
+
       Provider.of<Movies>(context).fetchMovies().then((_) {
         setState(() {
           _isLoading = false;

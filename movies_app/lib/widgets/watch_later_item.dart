@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../providers/movie.dart';
 import 'poster.dart';
-// import '../providers/auth.dart';
 
 class WatchLaterItem extends StatelessWidget {
   final Movie movie;
@@ -12,7 +11,7 @@ class WatchLaterItem extends StatelessWidget {
     return Dismissible(
       key: ValueKey(movie.id),
       background: Container(
-        color: Theme.of(context).errorColor,
+        color: Colors.blue,
         child: const Icon(
           Icons.delete,
           color: Colors.white,
@@ -64,6 +63,11 @@ class WatchLaterItem extends StatelessWidget {
                   child: Poster(movie: movie)),
             ),
             title: Text(movie.title),
+            trailing: const Icon(
+              Icons.delete,
+              color: Colors.blue,
+              size: 40,
+            ),
           ),
         ),
       ),

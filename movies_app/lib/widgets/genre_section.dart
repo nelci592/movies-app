@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../providers/movie.dart';
 import 'detail_item.dart';
 
@@ -12,7 +11,7 @@ class GenreSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -20,7 +19,7 @@ class GenreSection extends StatelessWidget {
             'Genre',
             style: Theme.of(context).textTheme.headline6,
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           SizedBox(
             height: 36,
             child: ListView.builder(

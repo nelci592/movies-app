@@ -6,6 +6,7 @@ import '../../widgets/poster.dart';
 import '../../widgets/actors_section.dart';
 import '../../widgets/genre_section.dart';
 import '../../widgets/release_date_section.dart';
+import '../../widgets/watch_later_section.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
   const MovieDetailsScreen({Key? key, required this.id}) : super(key: key);
@@ -15,8 +16,7 @@ class MovieDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final moviesData = Provider.of<Movies>(context);
     final auth = Provider.of<Auth>(context);
-
-    var movie = moviesData.findMovieById(id);
+    final movie = moviesData.findMovieById(id);
     final deviceSize = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -32,27 +32,7 @@ class MovieDetailsScreen extends StatelessWidget {
               height: deviceSize.height / 3,
               child: Poster(movie: movie),
             ),
-            TextButton(
-                onPressed: () {
-                  moviesData.addMovieToWatchList(
-                      movie, auth.userId as String, auth.token as String);
-                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: const Text('Added to watch list'),
-                    duration: const Duration(seconds: 2),
-                    action: SnackBarAction(
-                      label: 'Undo',
-                      onPressed: () {
-                        //    moviesData.removeMovieFromWatchList(
-                        //     movie, auth.userId as String, auth.token as String);
-                      },
-                    ),
-                  ));
-
-                  moviesData.addMovieToWatchList(
-                      movie, auth.userId as String, auth.token as String);
-                },
-                child: const Text('add to watch list')),
+            WatchLaterSection(moviesData: moviesData, movie: movie, auth: auth),
             ReleaseDateSection(movie: movie),
             GenreSection(movie: movie),
             ActorsSection(movie: movie)

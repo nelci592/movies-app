@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
-
 import '../providers/movie.dart';
 import 'detail_item.dart';
 
@@ -15,7 +14,7 @@ class ReleaseDateSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -23,7 +22,7 @@ class ReleaseDateSection extends StatelessWidget {
             'Release Date',
             style: Theme.of(context).textTheme.headline6,
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           DetailItem(detail: Jiffy(movie.releaseDate).yMMMMd),
         ],
       ),

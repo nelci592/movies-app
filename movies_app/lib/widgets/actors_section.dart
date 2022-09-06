@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../providers/movie.dart';
 import 'actor_card.dart';
 
@@ -22,7 +21,7 @@ class ActorsSection extends StatelessWidget {
             'Cast',
             style: Theme.of(context).textTheme.headline6,
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
           SizedBox(
             height: 160,
             child: ListView.builder(

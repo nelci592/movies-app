@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../providers/auth.dart';
-import '../../widgets/watch_list.dart';
 import 'package:provider/provider.dart';
 import '../../providers/movies.dart';
+import '../../providers/auth.dart';
+import '../../widgets/watch_list.dart';
 import '../../widgets/app_drawer.dart';
 
 class WatchListScreen extends StatefulWidget {

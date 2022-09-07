@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/screens/user%20profile%20screens/edit_user_profile_screen.dart';
 import 'package:movies_app/screens/user%20profile%20screens/user_profile_screen.dart';
 import 'package:provider/provider.dart';
 import './providers/movies.dart';
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
             routes: {
               WatchListScreen.routeName: (ctx) => const WatchListScreen(),
               UserProfilePage.routeName: (ctx) => const UserProfilePage(),
+              EditProfilePage.routeName: (ctx) => const EditProfilePage(),
             },
           ),
         ));

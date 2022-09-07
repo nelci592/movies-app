@@ -19,14 +19,15 @@ class UserDetails with ChangeNotifier {
         'https://movies-app-ba8b6-default-rtdb.firebaseio.com/userdetails/$userId.json?auth=$authToken';
     try {
       final response = await http.get(Uri.parse(url));
-      final extractedData = json.decode(response.body);
-      UserDetail userDetail = UserDetail(
-        name: extractedData['name'],
-        email: extractedData['email'],
-        about: extractedData['about'],
-        imageUrl: extractedData['imageUrl'],
-      );
-      userDetail = userDetail;
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+
+      extractedData.forEach((userId, userData) {
+        userDetail = UserDetail(
+            name: userData['name'],
+            email: userData['email'],
+            about: userData['about'],
+            imageUrl: userData['imageUrl']);
+      });
       notifyListeners();
     } catch (error) {
       return;

@@ -10,6 +10,7 @@ import 'user_profile_screen.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({Key? key}) : super(key: key);
+  static const routeName = '/userProfileEdit';
 
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
@@ -75,8 +76,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       'https://pbs.twimg.com/profile_images/725013638411489280/4wx8EcIA_400x400.jpg--');
               userDetails.updateUserDetails(auth.userId as String,
                   auth.token as String, updatedUserDetail);
-              Navigator.of(context)
-                  .pushReplacementNamed(UserProfilePage.routeName);
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                    builder: (context) => const UserProfilePage()),
+              );
             },
             child: const Text('Update details'),
           )

@@ -54,10 +54,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
             padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
             child: ProfileWidget(
               onClicked: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (context) => const EditProfilePage()),
-                );
+                Navigator.popAndPushNamed(context, EditProfilePage.routeName);
               },
             ),
           ),

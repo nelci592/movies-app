@@ -109,11 +109,11 @@ class Movies with ChangeNotifier {
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
 
       final List<Movie> loadedMovies = [];
-      extractedData.forEach((prodId, prodData) {
+      extractedData.forEach((id, movieData) {
         loadedMovies.add(Movie(
-            id: prodData['id'],
-            title: prodData['title'],
-            posterUrl: prodData['posterUrl']));
+            id: movieData['id'],
+            title: movieData['title'],
+            posterUrl: movieData['posterUrl']));
       });
       _watchLaterMovies = loadedMovies;
       notifyListeners();

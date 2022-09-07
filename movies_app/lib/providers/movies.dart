@@ -98,41 +98,6 @@ class Movies with ChangeNotifier {
     });
   }
 
-  // Future<void> removeMovie(String id, String authToken) async {
-  //    _watchLaterMovies.removeWhere((movie) => movie.id == id);
-  //   final url =
-  //       'https://movies-app-ba8b6-default-rtdb.firebaseio.com/movies/$id.json?auth=$authToken';
-
-  //     await http.delete(
-  //       Uri.parse(url),
-  //     );
-  //     _watchLaterMovies.forEach((movie) {
-  //      http.post(
-  //        Uri.parse(url),
-  //       body: json.encode({
-  //         'id': movie.id,
-  //         'title': movie.title,
-  //         'posterUrl': movie.posterUrl
-  //       }),
-  //     );
-  //     notifyListeners();
-
-  // }
-  // Future<void> removeMovieFromWatchList(
-  //   Movie movie,
-  //   String userId,
-  //   String authToken,
-  // ) async {
-  //   final url =
-  //       'https://movies-app-ba8b6-default-rtdb.firebaseio.com/movies/$userId.json?auth=$authToken';
-  //   try {
-  //     await http.delete(Uri.parse(url));
-  //     notifyListeners();
-  //   } catch (error) {
-  //     rethrow;
-  //   }
-  // }
-
   Future<void> fetchWatchLaterMovies(
     String userId,
     String authToken,

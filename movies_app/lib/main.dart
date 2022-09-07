@@ -3,6 +3,7 @@ import 'package:movies_app/screens/user%20profile%20screens/user_profile_screen.
 import 'package:provider/provider.dart';
 import './providers/movies.dart';
 import './providers/auth.dart';
+import 'providers/user_details.dart';
 import 'screens/auth screens/auth_screen.dart';
 import 'screens/movie screens/movies_screen.dart';
 import 'screens/splash_screen.dart';
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider.value(
             value: Movies(),
+          ),
+          ChangeNotifierProvider.value(
+            value: UserDetails(),
           ),
         ],
         child: Consumer<Auth>(

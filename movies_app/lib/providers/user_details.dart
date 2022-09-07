@@ -4,7 +4,12 @@ import 'package:http/http.dart' as http;
 import './user.dart';
 
 class UserDetails with ChangeNotifier {
-  late UserDetail userDetail;
+  UserDetail userDetail = UserDetail(
+      name: 'John Doe',
+      email: 'John Doe email',
+      about: 'John Doe about',
+      imageUrl:
+          'https://pbs.twimg.com/profile_images/725013638411489280/4wx8EcIA_400x400.jpg--');
 
   Future<void> fetchUserDetails(
     String userId,
@@ -14,7 +19,7 @@ class UserDetails with ChangeNotifier {
         'https://movies-app-ba8b6-default-rtdb.firebaseio.com/userdetails/$userId.json?auth=$authToken';
     try {
       final response = await http.get(Uri.parse(url));
-      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      final extractedData = json.decode(response.body);
       UserDetail userDetail = UserDetail(
         name: extractedData['name'],
         email: extractedData['email'],
@@ -22,6 +27,27 @@ class UserDetails with ChangeNotifier {
         imageUrl: extractedData['imageUrl'],
       );
       userDetail = userDetail;
+      notifyListeners();
+    } catch (error) {
+      return;
+    }
+  }
+
+  Future<void> updateUserDetails(
+      String userId, String authToken, UserDetail userDetail) async {
+    final url =
+        'https://movies-app-ba8b6-default-rtdb.firebaseio.com/userdetails/$userId.json?auth=$authToken';
+    try {
+      await http.delete(Uri.parse(url));
+      http.post(
+        Uri.parse(url),
+        body: json.encode({
+          'name': userDetail.name,
+          'email': userDetail.email,
+          'about': userDetail.about,
+          'imageUrl': userDetail.imageUrl
+        }),
+      );
       notifyListeners();
     } catch (error) {
       rethrow;
